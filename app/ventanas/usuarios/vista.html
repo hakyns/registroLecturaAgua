@@ -1,0 +1,237 @@
+<!-- File: Vista cliente usuarios -->
+<!-- Copyright: Joaquin Reyes Sanchez 2018 -->
+<!-- Author Joaquin Reyes Sanchez <joaquin.seyer21@gmail.com> -->
+<!-- Version 1.0.0 -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+  />
+  <link rel="stylesheet" href="../../styles/estilos.css">
+  <title>Usuarios</title>
+</head>
+
+<body class="body-y-scroll white-text">
+  <!-- MENU PRINCIPAL -->
+  <nav class="nav-extended cyan darken-1">
+    <div class="nav-content">
+      <div class="col s12">
+        <ul class="tabs tabs-transparent">
+          <li class="tab col s4">
+            <a class="active" href="#nuevo" id="usuario">Nuevo</a>
+          </li>
+          <li class="tab col s4">
+            <a href="#buscar" id="tabla">Buscar</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TAB NUEVO -->
+  <div id="nuevo" class="col s12">
+    <div class="container">
+      <div class="row">
+        <form class="col s12" enctype="multipart/form-data">
+          <!-- Nombre y Apellidos-->
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="nombre" type="text" class="validate black-text" data-length="20" name="nombre">
+              <label for="nombre" class="cyan-text text-darken-3">Nombre</label>
+              <div class="error"></div>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="apellidos" type="text" class="validate black-text" data-length="25" name="apellidos">
+              <label for="apellidos" class="cyan-text text-darken-3">Apellidos</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Usuario y Manzanas -->
+          <div class="row">
+            <div class="input-field col s6" id="usuario_tipo">
+              <select name="usuario_tipo" class="black-text"></select>
+              <label class="cyan-text text-darken-3">Tipo de Usuario</label>
+              <div class="error"></div>
+            </div>
+
+            <div class="input-field col s6" id="manzana">
+              <select name="manzana" class="black-text"></select>
+              <label class="cyan-text text-darken-3">Manzana</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- DATOS OPCIONALES -->
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">play_for_work</i>Datos Opcionales
+              </div>
+              <div class="collapsible-body">
+
+                <!-- Notas -->
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea id="notas" class="materialize-textarea black-text" name="notas" data-length="120"></textarea>
+                    <label for="notas" class="cyan-text text-darken-3">Notas</label>
+                    <div class="error"></div>
+                  </div>
+                </div>
+
+                <!-- Imagen -->
+                <div class="row">
+                  <div class="col s12">
+                    <div class="file-field input-field" id="imagen">
+                      <div class="btn cyan darken-2">
+                        <span>Imagen</span>
+                        <input type="file" accept=".png, .jpg, .jpeg" name="imagen">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input type="text" class="file-path validate black-text" id="imagenTexto">
+                      </div>
+                    </div>
+                    <div class="error"></div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Botones -->
+          <div class="row caja-botones-abajo">
+            <div class="container">
+              <div class="col s6 center-align">
+                <button class="btn waves-effect waves-light cyan darken-2" type="submit"> Crear
+                </button>
+              </div>
+              <div class="col s6 center-align">
+                <button class="btn waves-effect waves-light red white-text" type="button" id="limpiar"> Limpiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <!-- Modal de éxito por subida a la base datos -->
+          <div id="modal" class="container fijado-abajo"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB TABLA -->
+  <div id="buscar" class="col s12">
+    <div class="container filtrado-tabla cyan lighten-5 sombra-arriba panel-tabla">
+      <div class="input-field no-margin-bottom-select">
+        <select class="black-text" id="usuarioTipoBuscar"></select>
+        <label class="cyan-text text-darken-3">Tipo de Usuario</label>
+      </div>
+      <div class="input-field no-margin-bottom-select">
+        <select class="black-text" id="manzanaBuscar"></select>
+        <label class="cyan-text text-darken-3">Manzana</label>
+      </div>
+      <div class="input-field input-buscar">
+        <input placeholder="Nombre o Apellidos" id="inputBuscar" type="text" class="black-text input-error">
+        <label for="inputBuscar" class="cyan-text text-darken-3">Nombre o Apellidos</label>
+        <button id="botonBuscar" class="btn waves-effect waves-light cyan darken-2 boton-buscar" type="button"><i class="material-icons">search</i>
+        </button>
+      </div>
+      <div class="alineacion-vertical">
+        <div class="panel-tabla-botones">
+          <button class="btn waves-effect waves-light center-align amber darken-3 white-text boton-pequenio" type="button" id="resetearTabla"> <i class="material-icons">refresh</i>
+          </button>
+          <button id="botonPDF" class="btn waves-effect waves-light red accent-4 white-text boton-pequenio" type="button"><i class="material-icons">picture_as_pdf</i>
+          </button>
+          <button class="btn waves-effect waves-light green darken-4 white-text boton-pequenio tooltipped" data-position="top" data-delay="50" data-tooltip="Pendiente por Agregar" type="button" id="botonEXCEL"><i class="material-icons">view_module</i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="container tabla-padding">
+      <table class="bordered centered">
+        <thead>
+          <tr>
+            <th>Folio</th>
+            <th>Nombre</th>
+            <th>Usuario Tipo</th>
+            <th>Manzana</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Modal de éxito por subida a la base datos -->
+    <div id="modalB" class="container fijado-abajo"></div>
+  </div>
+
+  <!-- MODAL USUARIO -->
+  <div id="modalUsuario" class="modal">
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-header">
+          <img href="">
+        </div>
+        <div class="card-content">
+          <h3>Nombre Usuario</h3>
+          <div class="especificos">
+            <div class="grupo">
+              <span>Tipo Usuario</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Manzana</span>
+              <h4>Manzana</h4>
+            </div>
+          </div>
+          <div class="fechas">
+            <div class="grupo">
+              <span>Creado</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Actualizado</span>
+              <h4></h4>
+            </div>
+          </div>
+          <h6>Notas</h6>
+          <p>Sin Notas</p>
+        </div>
+        <div class="card-footer">
+          <ul>
+            <li>
+              <a href="#"><i class="fa fa-codepen"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-stack-overflow"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-github"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" id="modalCancelar" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
+      <a href="#!" id="modalModificar" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
+      <a href="#!" id="modalBorrar" class="modal-action modal-close waves-effect waves-green btn-flat">Borrar</a>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../config/hammer.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript" src="./vista.js"></script>
+</body>
+
+</html>

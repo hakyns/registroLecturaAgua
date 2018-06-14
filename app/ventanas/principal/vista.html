@@ -1,0 +1,103 @@
+<!-- File: Vista cliente usuarios -->
+<!-- Copyright: Joaquin Reyes Sanchez 2018 -->
+<!-- Author Joaquin Reyes Sanchez <joaquin.seyer21@gmail.com> -->
+<!-- Version 1.0.0 -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+  />
+  <link rel="stylesheet" href="../../styles/estilos.css">
+  <title>Sistema de registro de agua potable</title>
+</head>
+<body>
+  <div class="row">
+    <div class="col s3">
+        <ul class="collapsible">
+          <!-- Usuarios -->
+          <li id="moduloUsuarios">
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Usuarios</div>
+            <div class="collapsible-body">
+              <h4>Gestión de Usuarios</h4>
+              <p>
+                Aquí podrás gestionar todo lo relacionado con el manejo de usuarios de la red de agua potable: Clientes, Lecturistas y Administrador de este software.
+              </p>
+            </div>
+          </li>
+          <!-- El creador de este software no se hace responsable de los fines con el que se pretenda usar esta información fuera de su alcance -->
+
+          <!-- Agua -->
+          <li id="moduloAgua">
+            <div class="collapsible-header"><i class="material-icons">whatshot</i>Agua</div>
+            <div class="collapsible-body">
+              <h4>Gestión del agua</h4>
+              <p>
+                Aquí podrás administrar los recursos de agua de tu sector, mismos que podrás visualizar en graficos y registros por fecha. Utiliza esta información para analizar y verificar el control del suministro de agua.
+              </p>
+            </div>
+          </li>
+
+          <!-- Organizacion -->
+          <li id="moduloOrganizacion">
+            <div class="collapsible-header"><i class="material-icons">place</i>Organización</div>
+            <div class="collapsible-body">
+              <h4>Gestión de la Organización</h4>
+              <p>
+                Aquí podrás definir los parámetros que definen tu empresa; con estos parámetros se crearán tus hojas membretadas para cuando solicites registros impresos en PDF.
+              </p>
+            </div>
+          </li>
+        </ul>
+        <div class="container center-align">
+          <div class="principal-lecturista">
+            <div class="lect-grupo">
+              <h5>Lecturista</h5>
+              <div class="lecturista-datos" id="lecturistaNombre"></div>
+            </div>
+            <div class="lect-grupo">
+              <h5>Zona de Trabajo</h5>
+              <div class="lecturista-datos" id="lecturistaZonaTrabajo"></div>
+            </div>
+            <div class="lect-grupo-completo">
+              <h5>Folio del Lecturista</h5>
+              <div class="lecturista-datos" id="lecturistaFolio"></div>
+            </div>
+            <div class="lect-grupo">
+              <h5>Fecha de Inicio</h5>
+              <div class="lecturista-datos" id="lecturistaFechaInicio"></div>
+            </div>
+            <div class="lect-grupo">
+              <h5>Fecha de Finalización</h5>
+              <div class="lecturista-datos" id="lecturistaFechaFin"></div>
+            </div>
+            <div class="lect-grupo-completo">
+              <h5>Minutos Trabajados</h5>
+              <div class="lecturista-datos" id="lecturistaMinutosTrabajados"></div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="container center-align">
+          <button class="btn waves-effect waves-light red darken-1 white-text" type="button" id="salirSistema">Salir
+            <i class="material-icons right">exit_to_app</i>
+          </button>
+        </div>
+    </div>
+    <div class="col s9">
+      <h3 class="titular">Sistema de registro de lectura de agua potable</h3>
+      <div class="row" id="modulos"></div>
+      <div class="pie-pagina">
+          Software propiedad de: Joaquin Reyes Sanchez &#60;
+          joaquin.seyer21@gmail.com&#62; 2018
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../config/hammer.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript" src="./vista.js"></script>
+</body>
+</html>

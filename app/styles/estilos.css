@@ -1,0 +1,632 @@
+body {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+label, input, textarea, select {
+  font-weight: bold;
+}
+
+input {
+  margin-bottom: 30px !important;
+}
+
+input:disabled, .select-input-estatico input {
+  color: darkorange !important;
+}
+
+input:disabled::-webkit-input-placeholder {
+  color: darkorange !important;
+}
+
+h5 {
+  color: black !important;
+  font-size: 13px !important;
+  font-weight: bold !important;
+  text-align: center !important;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
+#modalGrafico {
+  width: 90% !important;
+  height: 100% !important;
+}
+
+.body-y-scroll {
+  overflow-y: scroll
+}
+
+.row {
+  margin: 0%;
+}
+
+.row:first-child {
+  margin-top: 10px;
+}
+
+.titular {
+  color: #0097a7;
+
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.pie-pagina {
+  width: 100%;
+
+  padding: 10px;
+
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+
+  font-size: 16px;
+  font-style: italic;
+}
+
+.fijado-abajo {
+  z-index: 100;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.fijado-abajo > .row {
+  margin: 0;
+  padding: 0;
+}
+
+.fijado-abajo > .row > .col {
+  margin: 0;
+  padding: 0;
+}
+
+.fijado-abajo > .row > .col > .card-panel {
+  margin: 0;
+}
+
+.caja-botones-abajo {
+  margin-top: 50px;
+}
+
+.dropdown-content li>span {
+  font-size: 15px !important;
+  font-weight: bold;
+  color: white !important;
+  background: #0097a7 !important;
+}
+.dropdown-content li > span:hover {
+  background: #00acc1 !important;
+}
+.dropdown-content li:first-child > span {
+  color: #b2ebf2 !important;
+}
+
+.character-counter {
+  color: #00838f !important;
+}
+
+.collapsible-header{
+  margin: 0 !important;
+  background: #00acc1;
+}
+
+.collapsible {
+  margin: 0 0 10px 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.collapsible-body, ul.collapsible>li{
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+table {
+  color: black !important;
+}
+
+th, td {
+  font-size: 12px !important;
+}
+
+.filtrado-tabla {
+  z-index: 100;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0 10px 10px 10px;
+
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+
+  background: white;
+}
+
+.tabla-padding {
+  padding-bottom: 300px
+}
+
+.modal {
+  color: black;
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card img {
+  max-width: 100%;
+}
+
+.card h3, .card h4 {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card h3 {
+  text-transform: uppercase;
+}
+
+.card h4 {
+  text-transform: capitalize;
+}
+
+.card h5 {
+  font-size: 13px;
+  font-weight: normal;
+  text-transform: lowercase;
+}
+
+.card h6 {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.card p {
+  font-size: 13px;
+  font-style: italic;
+}
+
+.card span {
+  width: 100%;
+
+  margin-bottom: 5px;
+
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.card .grupo {
+  width: 50%;
+
+  margin-bottom: 10px;
+
+  border-bottom: solid 1px lightgray;
+}
+
+.card .grupo--completo {
+  width: 100%;
+}
+
+.card .especificos, .card .fechas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card--login {
+  width: 100%;
+  height: 200px;
+
+  position: relative;
+
+  color: #000;
+  background: transparent;
+
+  box-shadow: 0px 0px 0px 0px transparent;
+
+  overflow: hidden;
+}
+
+.card--login .card-header {
+  height: 100%;
+}
+
+.card--login .card-content {
+  width: 100%;
+
+  padding: 0px;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  background: rgba(0,131,143, .8);
+  color: white;
+}
+
+.card-modulos {
+  width: 100%;
+  height: 250px;
+
+  position: relative;
+
+  color: #000;
+
+  overflow: hidden;
+
+  cursor: pointer;
+}
+
+.card-modulos .card-image{
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.card-modulos .card-image img {
+  width: auto !important;
+  max-width: none !important;
+}
+
+.card-modulos .card-content {
+  width: 100%;
+  height: 50px;
+
+  padding: 0px;
+  margin: 0px;
+
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  background: #0097a7;
+  color: white;
+
+  overflow: hidden;
+}
+
+.card-modulos .card-content .card-title {
+  width: 100%;
+
+  margin: 0px;
+  padding: 10px;
+
+  font-size: 15px !important;
+  text-transform: uppercase;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+}
+
+.card-modulos p {
+  z-index: 10;
+
+  width: 100%;
+  height: 200px;
+
+  padding: 20px;
+  margin: 0px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  left: 0px;
+  top: -200px;
+
+  font-size: 14px !important;
+  font-weight: normal;
+  text-align: justify;
+
+  background: #0097a7;
+  color:white;
+
+  transition: all 200ms ease-in-out;
+}
+
+.card-modulos:hover p {
+  top: 0px;
+}
+
+.autocomplete, .icono-autocomplete {
+  color: #000;
+}
+
+.autocomplete::-webkit-input-placeholder {
+  color: #0097a7 !important;
+}
+
+.input-buscar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-buscar > .boton-buscar {
+  width: 40px;
+  height: 40px !important;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boton-pequenio {
+  width: 35px;
+  height: 35px;
+
+  margin: 0;
+  padding: 0;
+  margin-right: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boton-exportar:last-child {
+  margin-right: 0px
+}
+
+.alinear-centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-error {
+  margin-bottom: 0px !important;
+}
+
+.sombra-arriba {
+  box-shadow: 2px 0 2px 0 rgba(0,0,0,0.14),
+  1px 0 5px 0 rgba(0,0,0,0.12),
+  3px 0 1px -2px rgba(0,0,0,0.2);
+}
+
+.no-margin-bottom-select > div > input {
+  margin-bottom: 0px !important;
+}
+
+.caja-error {
+  margin: 0px;
+  margin-bottom: 30px;
+  padding: 10px 0px 0px 0px;
+
+  font-size: 13px !important;
+  font-weight: bold;
+  font-style: italic;
+
+  box-shadow: 0px 0px 0px 0 transparent;
+
+  background: transparent;
+}
+
+.panel-tabla {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.panel-tabla-elemento {
+  width: 33%;
+}
+
+.panel-tabla-botones {
+  padding-top: 10px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.datepicker {
+  color: #000;
+}
+
+.switch > label{
+  font-size: 18px;
+}
+
+.caja-switch {
+  height: 73px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titular-login {
+  width: 100%;
+
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #00838f;
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+
+  margin: 10px 0px 40px 0px;
+
+  border: solid 2px #00838f;
+}
+
+.map-fullscreen {
+  width: 100% !important;
+  height: 100% !important;
+
+  margin: 0px !important;
+}
+
+.textoMapa {
+  color: black;
+  text-align: center;
+}
+
+.titulo-mapa {
+  font-size: 24px;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #00838f;
+}
+
+.desglose_pagos {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+
+  color: black;
+}
+
+#dinero_total, #dinero_recibido, #dinero_cambio {
+  font-size: 20px !important;
+  text-align: center;
+}
+
+#dinero_recibido {
+  color: green !important;
+}
+
+#dinero_cambio {
+  color: red !important;
+}
+
+#dinero_recibido::-webkit-input-placeholder,  #dinero_cambio::-webkit-input-placeholder {
+  color: darkorange !important;
+}
+
+.desglose-pagos {
+  background: #FAFAFA;
+  padding: 10px 0px;
+
+  position: relative;
+}
+
+.desglose-pagos > li {
+  padding: 0px 10px;
+}
+
+.desglose-pagos-numero {
+  position: absolute;
+
+  width: 30px;
+  height: 30px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  margin: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1;
+
+  border-radius: 50%;
+
+  background: darkgrey;
+  color: black;
+}
+
+.bloquear-vista {
+  pointer-events: none
+}
+
+.principal-lecturista {
+  width: 100%;
+  height: 120px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  overflow-y: auto;
+}
+
+.principal-lecturista h5 {
+  font-size: 13px !important;
+  text-transform: uppercase;
+}
+
+.lect-grupo {
+  width: 50%;
+}
+
+.lect-grupo-completo {
+  width: 100%;
+}
+
+.lecturista-datos {
+  font-size: 13px !important;
+  font-style: italic;
+}
+
+.check-centradoY {
+  height: 100%;
+
+  margin: 0 !important;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

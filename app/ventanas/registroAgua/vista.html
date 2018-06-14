@@ -1,0 +1,234 @@
+<!-- File: Vista cliente usuarios -->
+<!-- Copyright: Joaquin Reyes Sanchez 2018 -->
+<!-- Author Joaquin Reyes Sanchez <joaquin.seyer21@gmail.com> -->
+<!-- Version 1.0.0 -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+  />
+  <link rel="stylesheet" href="../../styles/estilos.css">
+  <title>Registro de Agua</title>
+</head>
+
+<body class="body-y-scroll white-text">
+  <!-- MENU PRINCIPAL -->
+  <nav class="nav-extended cyan darken-1">
+    <div class="nav-content">
+      <div class="col s12">
+        <ul class="tabs tabs-transparent">
+          <li class="tab col s4">
+            <a class="active" href="#nuevo" id="registroAgua">Nuevo</a>
+          </li>
+          <li class="tab col s4">
+            <a href="#mapaLugar" id="mapa">Mapa</a>
+          </li>
+          <li class="tab col s4">
+            <a href="#buscar" id="tabla">Buscar</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TAB NUEVO -->
+  <div id="nuevo" class="col s12">
+    <div class="container">
+      <div class="row">
+        <form class="col s12" enctype="multipart/form-data">
+          <!-- Zona de Trabajo y Fecha de Registro -->
+          <div class="row">
+            <div class="input-field col s6">
+              <input disabled value="Medidor No." id="zona_trabajo" type="text" class="validate">
+              <label for="zona_trabajo" class="cyan-text text-darken-3">Zona de Trabajo</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="fecha_registro" type="text" class="datepicker" name="fecha_registro">
+              <label for="fecha_registro" class="cyan-text text-darken-3">Fecha de Registro</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Medidor y Trabajador -->
+          <div class="row">
+            <div class="input-field col s6 select-input-estatico" id="numeroMedidor">
+              <select name="numeroMedidor" class="black-text"></select>
+              <label class="cyan-text text-darken-3">Medidor</label>
+            </div>
+
+            <div class="input-field col s6" id="trabajador">
+              <select name="trabajador" class="black-text" disabled></select>
+              <label class="cyan-text text-darken-3">Lecturista</label>
+            </div>
+          </div>
+
+          <!-- Usuario Cliente y LECTURA  -->
+          <div class="row">
+            <div class="input-field col s6" id="medidor">
+              <select name="medidor" class="black-text"></select>
+              <label class="cyan-text text-darken-3">Cliente</label>
+              <div class="error"></div>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="lectura" type="number" class="validate black-text" data-length="4" name="lectura" maxlength="4" step="1">
+              <label for="lectura" class="cyan-text text-darken-3">Lectura</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="row caja-botones-abajo">
+            <div class="container">
+              <div class="col s6 center-align">
+                <button class="btn waves-effect waves-light cyan darken-2" type="submit"> Registrar
+                </button>
+              </div>
+              <div class="col s6 center-align">
+                <button class="btn waves-effect waves-light red white-text" type="button" id="limpiar"> Limpiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <!-- Modal de éxito por subida a la base datos -->
+          <div id="modal" class="container fijado-abajo"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB MAPA -->
+  <div id="mapaLugar" class="col s12">
+    <div class="container">
+      <div class="row center-align">
+        <button class="btn waves-effect waves-light cyan darken-2" type="button" id="activadorMapa"><i class="material-icons left">map</i> Activar Mapa </button>
+      </div>
+      <!-- Mapa Google -->
+      <div class="row">
+        <h2 class="titulo-mapa">Mapa de San Miguel Caltepantla</h2>
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB TABLA -->
+  <div id="buscar" class="col s12">
+    <div class="container filtrado-tabla cyan lighten-5 sombra-arriba panel-tabla">
+      <div class="input-field no-margin-bottom-select panel-tabla-elemento">
+        <select class="black-text" id="clienteBuscar"></select>
+        <label class="cyan-text text-darken-3">Cliente</label>
+      </div>
+      <div class="alineacion-vertical">
+        <div class="panel-tabla-botones">
+          <button class="btn waves-effect waves-light center-align amber darken-3 white-text boton-pequenio" type="button" id="resetearTabla"> <i class="material-icons">refresh</i>
+          </button>
+          <button id="botonPDF" class="btn waves-effect waves-light red accent-4 white-text boton-pequenio" type="button"><i class="material-icons">picture_as_pdf</i>
+          </button>
+          <button class="btn waves-effect waves-light green darken-4 white-text boton-pequenio tooltipped" data-position="top" data-delay="50" data-tooltip="Pendiente por Agregar" type="button" id="botonGrafica"><i class="material-icons">view_module</i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="container tabla-padding">
+      <table class="bordered centered">
+        <caption></caption>
+        <thead>
+          <tr>
+            <th>Folio</th>
+            <th>Cliente</th>
+            <th>Lectura</th>
+            <th>Fecha Registro</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Modal de éxito por subida a la base datos -->
+    <div id="modalB" class="container fijado-abajo"></div>
+  </div>
+
+  <!-- MODAL LECTURA -->
+  <div id="modalRegistroAgua" class="modal">
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-header">
+          <img href="">
+        </div>
+        <div class="card-content">
+          <h3>Nombre Usuario</h3>
+          <div class="especificos">
+            <div class="grupo">
+              <span>Manzana</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Fecha de Registro</span>
+              <h4></h4>
+            </div>
+          </div>
+          <div class="fechas">
+            <div class="grupo">
+              <span>No. Medidor</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Lectura</span>
+              <h4></h4>
+            </div>
+          </div>
+          <h6>Cambios</h6>
+          <p>Sin Cambios</p>
+        </div>
+        <div class="card-footer">
+          <ul>
+            <li>
+              <a href="#"><i class="fa fa-codepen"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-stack-overflow"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-github"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" id="modalCancelar" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
+      <a href="#!" id="modalModificar" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
+      <a href="#!" id="modalBorrar" class="modal-action modal-close waves-effect waves-green btn-flat">Borrar</a>
+    </div>
+  </div>
+
+  <div id="modalGrafico" class="modal">
+    <div class="modal-content">
+      <canvas id="chart"></canvas>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" id="modalCancelar" class="modal-action modal-close waves-effect waves-red btn-flat">Salir</a>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../config/hammer.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript" src="./vista.js"></script>
+
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChyrVmfM51Gg7olEtqFnPzI3QjXOWCKKE">
+  </script>
+</body>
+
+</html>

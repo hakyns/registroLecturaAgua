@@ -1,0 +1,79 @@
+<!-- File: Vista cliente usuarios -->
+<!-- Copyright: Joaquin Reyes Sanchez 2018 -->
+<!-- Author Joaquin Reyes Sanchez <joaquin.seyer21@gmail.com> -->
+<!-- Version 1.0.0 -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+  />
+  <link rel="stylesheet" href="../../styles/estilos.css">
+  <title>Acceso al Sistema</title>
+</head>
+
+<body class="body-y-scroll white-text">
+
+  <!-- <h1 class="titular-login">sistema de registro de agua potable</h1> -->
+
+  <div class="container">
+    <div class="row">
+
+      <div class="card card--login">
+        <div class="card-header">
+          <img href="">
+        </div>
+        <div class="card-content">
+          <h3>sistema de registro de agua potable</h3>
+        </div>
+      </div>
+
+      <form class="col s12">
+
+        <!-- Usuario -->
+        <div class="row">
+          <div class="input-field col s12" id="usuario">
+            <select name="usuario" class="black-text"></select>
+            <label class="cyan-text text-darken-3">Trabajador o Administrador</label>
+            <div class="error"></div>
+          </div>
+        </div>
+
+        <!-- Llave -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="llave" type="password" class="validate black-text" name="llave" >
+            <label for="llave" class="cyan-text text-darken-3">Llave de Acceso</label>
+            <div class="error"></div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <div class="row">
+          <br>
+          <div class="container">
+            <div class="col s12 center-align">
+              <button class="btn waves-effect waves-light cyan darken-2" type="submit"> Acceder
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <!-- Modal de éxito por subida a la base datos -->
+        <div id="modal" class="container fijado-abajo"></div>
+      </form>
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../config/hammer.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript" src="./vista.js"></script>
+</body>
+
+</html>

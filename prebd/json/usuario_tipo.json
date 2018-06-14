@@ -1,0 +1,14 @@
+[
+  {
+    "id" : 1,
+    "tipo" : "cliente"
+  },
+  {
+    "id" : 2,
+    "tipo" : "lecturista"
+  },
+  {
+    "id" : 3,
+    "tipo" : "administrador"
+  }
+]

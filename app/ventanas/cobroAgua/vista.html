@@ -1,0 +1,242 @@
+<!-- File: Vista cliente usuarios -->
+<!-- Copyright: Joaquin Reyes Sanchez 2018 -->
+<!-- Author Joaquin Reyes Sanchez <joaquin.seyer21@gmail.com> -->
+<!-- Version 1.0.0 -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+  />
+  <link rel="stylesheet" href="../../styles/estilos.css">
+  <title>Cobro de Agua</title>
+</head>
+
+<body class="body-y-scroll white-text">
+  <!-- MENU PRINCIPAL -->
+  <nav class="nav-extended cyan darken-1">
+    <div class="nav-content">
+      <div class="col s12">
+        <ul class="tabs tabs-transparent">
+          <li class="tab col s4">
+            <a class="active" href="#nuevo" id="cobroAgua">Cobrar</a>
+          </li>
+          <li class="tab col s4">
+            <a href="#buscar" id="tabla">Buscar</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TAB NUEVO -->
+  <div id="nuevo" class="col s12">
+    <div class="container">
+      <div class="row">
+        <form class="col s12" enctype="multipart/form-data">
+          <!-- Selección Registro Agua -->
+          <div class="row">
+            <div class="input-field col s5" id="cliente">
+              <select name="cliente" class="black-text"></select>
+              <label class="cyan-text text-darken-3">Cliente</label>
+            </div>
+
+            <div class="input-field col s5" id="registro_agua">
+              <select name="registro_agua" class="black-text"></select>
+              <label class="cyan-text text-darken-3">Fechas Registradas</label>
+              <div class="error"></div>
+            </div>
+
+            <div class="col s2 check-centradoY">
+              <p>
+                <input type="checkbox" class="filled-in" checked="checked" id="cadenaInicial" />
+                <label for="cadenaInicial">Cadena Inicial</label>
+              </p>
+            </div>
+          </div>
+
+          <!-- DESGLOSE PAGOS -->
+          <div class="row">
+            <div class="col s12">
+              <label for="desglose_pagos" class="cyan-text text-darken-3">Desglose del monto a Pagar</label>
+              <div class="desglose_pagos" id="desglose_pagos"></div>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- DINERO TOTAL -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input disabled placeholder="Esperando por desglose de pagos" id="dinero_total" type="number" step="0.01" class="validate black-text" name="dinero_total">
+              <label for="dinero_total" class="cyan-text text-darken-3">Total a Pagar</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- DINERO TRANSACCION -->
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Esperando Dinero" id="dinero_recibido" type="number" step="0.01" class="validate black-text" data-length="20" name="dinero_recibido">
+              <label for="dinero_recibido" class="cyan-text text-darken-3">Dinero Recibido</label>
+              <div class="error"></div>
+            </div>
+
+            <div class="input-field col s6">
+              <input placeholder="Esperando Cambio" id="dinero_cambio" type="number" step="0.01" class="validate black-text" data-length="20" name="dinero_cambio">
+              <label for="dinero_cambio" class="cyan-text text-darken-3">Dinero Cambio</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="row caja-botones-abajo">
+            <div class="container">
+              <div class="col s6 center-align">
+                <button class="btn waves-effect waves-light cyan darken-2" type="submit"> Crear
+                </button>
+              </div>
+              <div class="col s6 center-align">
+                <button class="btn waves-effect waves-light red white-text" type="button" id="limpiar"> Limpiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <!-- Modal de éxito por subida a la base datos -->
+          <div id="modal" class="container fijado-abajo"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB TABLA -->
+  <div id="buscar" class="col s12">
+    <div class="container filtrado-tabla cyan lighten-5 sombra-arriba panel-tabla">
+      <div class="input-field no-margin-bottom-select panel-tabla-elemento">
+        <select class="black-text" id="clienteBuscar"></select>
+        <label class="cyan-text text-darken-3">Cliente</label>
+      </div>
+      <div class="alineacion-vertical">
+        <div class="panel-tabla-botones">
+          <button class="btn waves-effect waves-light center-align amber darken-3 white-text boton-pequenio" type="button" id="resetearTabla"> <i class="material-icons">refresh</i>
+          </button>
+          <button id="botonPDF" class="btn waves-effect waves-light red accent-4 white-text boton-pequenio" type="button"><i class="material-icons">picture_as_pdf</i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="container tabla-padding">
+      <table class="bordered centered">
+        <thead>
+          <tr>
+            <th>Folio R</th>
+            <th>Cliente</th>
+            <th>Fecha Cobro</th>
+            <th>Lectura Agua</th>
+            <th>Metros<sup>2</sup> Consumidos</th>
+            <th>Total Pagado</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Modal de éxito por subida a la base datos -->
+    <div id="modalB" class="container fijado-abajo"></div>
+  </div>
+
+  <!-- MODAL USUARIO -->
+  <div id="modalCobroAgua" class="modal">
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-header">
+          <img href="">
+        </div>
+        <div class="card-content">
+          <h3>Nombre Cliente</h3>
+          <div class="especificos">
+            <div class="grupo">
+              <span>Lectura</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Fecha Lectura</span>
+              <h4></h4>
+            </div>
+          </div>
+          <div class="fechas" id="modalCobroAguaLecturas">
+            <div class="grupo">
+              <span>Lectura Anterior</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Metros<sup>2</sup> Consumidos</span>
+              <h4></h4>
+            </div>
+          </div>
+          <div class="fechas" id="modalCobroAguaDineroA">
+            <div class="grupo">
+              <span>Total a Pagar</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Tarifa Aplicada</span>
+              <h4></h4>
+            </div>
+          </div>
+          <div class="fechas" id="modalCobroAguaDesglose">
+            <div class="grupo">
+              <span>Dinero Recibido</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Dinero Cambio</span>
+              <h4></h4>
+            </div>
+          </div>
+          <div class="fechas" id="modalCobroAguaDineroB">
+            <div class="grupo">
+              <span>Pago Conjunto</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Fecha de Cobro</span>
+              <h4></h4>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <ul>
+            <li>
+              <a href="#"><i class="fa fa-codepen"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-stack-overflow"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-github"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" id="modalCancelar" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
+      <a href="#!" id="modalBorrar" class="modal-action modal-close waves-effect waves-green btn-flat">Borrar</a>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../config/hammer.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript" src="./vista.js"></script>
+</body>
+
+</html>

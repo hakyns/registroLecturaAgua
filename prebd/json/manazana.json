@@ -1,0 +1,14 @@
+[
+  {
+    "id" : 1,
+    "manzana": "manzana 1"
+  },
+  {
+    "id" : 2,
+    "manzana": "manzana 2"
+  },
+  {
+    "id" : 3,
+    "manzana": "manzana 3"
+  }
+]

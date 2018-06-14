@@ -1,0 +1,129 @@
+<!-- File: Vista cliente usuarios -->
+<!-- Copyright: Joaquin Reyes Sanchez 2018 -->
+<!-- Author Joaquin Reyes Sanchez <joaquin.seyer21@gmail.com> -->
+<!-- Version 1.0.0 -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+  />
+  <link rel="stylesheet" href="../../styles/estilos.css">
+  <title>Organización</title>
+</head>
+
+<body class="body-y-scroll white-text">
+  <!-- MENU PRINCIPAL -->
+  <nav class="nav-extended cyan darken-1">
+    <div class="nav-content">
+      <div class="col s12">
+        <ul class="tabs tabs-transparent">
+          <li class="tab col s4">
+            <a class="active" href="#nuevo" id="organizacion">Nuevo</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TAB NUEVO -->
+  <div id="nuevo" class="col s12">
+    <div class="container">
+      <div class="row">
+        <form class="col s12" enctype="multipart/form-data">
+          <!-- Nombre -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="nombre" type="text" class="validate black-text" data-length="35" name="nombre">
+              <label for="nombre" class="cyan-text text-darken-3">Nombre Organización</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Ciudad y Estado -->
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="ciudad" type="text" class="validate black-text" data-length="22" name="ciudad">
+              <label for="ciudad" class="cyan-text text-darken-3">Ciudad</label>
+              <div class="error"></div>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="estado" type="text" class="validate black-text" data-length="13" name="estado">
+              <label for="estado" class="cyan-text text-darken-3">Estado</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Telefono y Codigo Postal -->
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="telefono" type="number" class="validate black-text" data-length="15" name="telefono">
+              <label for="telefono" class="cyan-text text-darken-3">Telefono</label>
+              <div class="error"></div>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="codigo_postal" type="number" class="validate black-text" data-length="10" name="codigo_postal">
+              <label for="codigo_postal" class="cyan-text text-darken-3">Codigo Postal</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Domicilio -->
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="domicilio" class="materialize-textarea black-text" name="domicilio" data-length="40"></textarea>
+              <label for="domicilio" class="cyan-text text-darken-3">Domicilio</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Imagen -->
+          <div class="row">
+            <div class="col s12">
+              <div class="file-field input-field" id="imagen">
+                <div class="btn cyan darken-2">
+                  <span>Imagen</span>
+                  <input type="file" accept=".png, .jpg, .jpeg" name="imagen">
+                </div>
+                <div class="file-path-wrapper">
+                  <input type="text" class="file-path validate black-text" id="imagenTexto">
+                </div>
+              </div>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="row caja-botones-abajo">
+            <div class="container">
+              <div class="col s6 center-align">
+                <button class="btn waves-effect waves-light cyan darken-2" type="submit"> Crear
+                </button>
+              </div>
+              <div class="col s6 center-align">
+                <button class="btn waves-effect waves-light red white-text" type="button" id="limpiar"> Limpiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <!-- Modal de éxito por subida a la base datos -->
+          <div id="modal" class="container fijado-abajo"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../config/hammer.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript" src="./vista.js"></script>
+</body>
+
+</html>

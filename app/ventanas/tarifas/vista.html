@@ -1,0 +1,184 @@
+<!-- File: Vista cliente usuarios -->
+<!-- Copyright: Joaquin Reyes Sanchez 2018 -->
+<!-- Author Joaquin Reyes Sanchez <joaquin.seyer21@gmail.com> -->
+<!-- Version 1.0.0 -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+  />
+  <link rel="stylesheet" href="../../styles/estilos.css">
+  <title>Tarifas</title>
+</head>
+
+<body class="body-y-scroll white-text">
+  <!-- MENU PRINCIPAL -->
+  <nav class="nav-extended cyan darken-1">
+    <div class="nav-content">
+      <div class="col s12">
+        <ul class="tabs tabs-transparent">
+          <li class="tab col s4">
+            <a class="active" href="#nuevo" id="tarifas">Nuevo</a>
+          </li>
+          <li class="tab col s4">
+            <a href="#buscar" id="tabla">Buscar</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TAB NUEVO -->
+  <div id="nuevo" class="col s12">
+    <div class="container">
+      <div class="row">
+        <form class="col s12" enctype="multipart/form-data">
+          <!-- Rangos -->
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="rango_minimo" type="number" class="validate black-text" data-length="20" name="rango_minimo">
+              <label for="rango_minimo" class="cyan-text text-darken-3">Rango Mínimo</label>
+              <div class="error"></div>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="rango_maximo" type="number" class="validate black-text" data-length="20" name="rango_maximo">
+              <label for="rango_maximo" class="cyan-text text-darken-3">Rango Máximo</label>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Tarifa y Fija_Incrementada -->
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="tarifa" type="number" step="0.01" class="validate black-text" data-length="20" name="tarifa">
+              <label for="tarifa" class="cyan-text text-darken-3">Tarifa</label>
+              <div class="error"></div>
+            </div>
+
+            <div class="col s6 caja-switch">
+              <p id="fija_incrementada">
+                <input name="fija_incrementada" type="radio" id="fija" value="0" checked />
+                <label for="fija">Tarifa Fija</label>
+              </p>
+              <p>
+                <input name="fija_incrementada" type="radio" id="incrementada" value="1" />
+                <label for="incrementada">Tarifa Incrementada</label>
+              </p>
+              <div class="error"></div>
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="row caja-botones-abajo">
+            <div class="container">
+              <div class="col s6 center-align">
+                <button class="btn waves-effect waves-light cyan darken-2" type="submit"> Crear
+                </button>
+              </div>
+              <div class="col s6 center-align">
+                <button class="btn waves-effect waves-light red white-text" type="button" id="limpiar"> Limpiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <!-- Modal de éxito por subida a la base datos -->
+          <div id="modal" class="container fijado-abajo"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB TABLA -->
+  <div id="buscar" class="col s12">
+    <div class="container filtrado-tabla cyan lighten-5 sombra-arriba panel-tabla">
+      <div class="alineacion-vertical">
+        <div class="panel-tabla-botones">
+          <button class="btn waves-effect waves-light center-align amber darken-3 white-text boton-pequenio" type="button" id="resetearTabla"> <i class="material-icons">refresh</i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="container tabla-padding">
+      <table class="bordered centered">
+        <thead>
+          <tr>
+            <th>Folio</th>
+            <th>Rango Mínimo</th>
+            <th>Rango Máximo</th>
+            <th>Tarifa</th>
+            <th>Tipo de Tarifa</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Modal de éxito por subida a la base datos -->
+    <div id="modalB" class="container fijado-abajo"></div>
+  </div>
+
+  <!-- MODAL TARIFA -->
+  <div id="modalUsuario" class="modal">
+    <div class="modal-content">
+      <div class="card">
+        <div class="card-content">
+          <div class="especificos">
+            <div class="grupo">
+              <span>Rango mínimo</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Rango máximo</span>
+              <h4></h4>
+            </div>
+          </div>
+          <div class="fechas">
+            <div class="grupo">
+              <span>Tarifa</span>
+              <h4></h4>
+            </div>
+            <div class="grupo">
+              <span>Tipo de Tarifa</span>
+              <h4></h4>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <ul>
+            <li>
+              <a href="#"><i class="fa fa-codepen"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-stack-overflow"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-github"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" id="modalCancelar" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
+      <a href="#!" id="modalModificar" class="modal-action modal-close waves-effect waves-green btn-flat">Modificar</a>
+      <a href="#!" id="modalBorrar" class="modal-action modal-close waves-effect waves-green btn-flat">Borrar</a>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../config/hammer.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../../../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript" src="./vista.js"></script>
+</body>
+
+</html>
